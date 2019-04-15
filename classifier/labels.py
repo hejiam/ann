@@ -1,16 +1,18 @@
 import os
 
-file1_path = '/home/hjm/traffic_valid/'
-file2_path = '/home/hjm/traffic_valid/'
 
+# labels_path = '/home/hjm/traffic_valid/'
+labels_path = input('labels_path: ')
+# transform_path = '/home/hjm/traffic_valid/'
+transform_path = input('transform_path: ')
 
 data = ''
 
-with open('labels.txt', 'r') as r:
+with open(labels_path, 'r') as r:
 # with open(file1_path, 'r') as r:
     lines = r.readlines()
     for line in lines:
-        line = line.split("/") # ['00001_235.jpg','u_80\n']
+        line = line.split("/")  # ['00001_235.jpg','u_80\n']
         # print(line)
         name = line[0].split("_")[0]
         # print(name)
@@ -30,14 +32,15 @@ with open('labels.txt', 'r') as r:
 # print(data)
 r.close()
 
-with open('label.txt','w') as w:
+with open(transform_path, 'w') as w:
     w.write(data)
 w.close()
 
-file3_path = '/home/hjm/traffic_valid/test/'
-list =sorted(os.listdir(file3_path))
+rename_path = input('rename_path: ')
+# rename_path = '/home/hjm/traffic_valid/test/'
+list = sorted(os.listdir(rename_path))
 
-with open('label.txt','r') as r:
+with open(transform_path, 'r') as r:
     lines = r.readlines()
     for l in list:
         # src = os.path.join(file3_path, l)
@@ -45,8 +48,8 @@ with open('label.txt','r') as r:
         for line in lines:
             l2 = line.split('_')
             if l1[0] == l2[0]:
-                src = os.path.join(file3_path,l)
-                dst = file3_path + line + '.jpg'
-                os.rename(src,dst)
+                src = os.path.join(rename_path,l)
+                dst = rename_path + line + '.jpg'
+                os.rename(src, dst)
 r.close()
 

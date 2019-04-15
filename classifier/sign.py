@@ -5,11 +5,14 @@ import xml.dom.minidom
 import numpy as np
 
 # ImgPath = '/home/hjm/sign/test/'
-ImgPath = '/home/hjm/traffic_valid/t_valid1/'
+ImgPath = input('Imgpath: ')
+# ImgPath = '/home/hjm/traffic_valid/t_valid1/'
 # AnnoPath = '/home/hjm/sign/testxml/'
-AnnoPath = '/home/hjm/traffic_valid/Annotations1/'
+AnnoPath = input('Annopath: ')
+# AnnoPath = '/home/hjm/traffic_valid/Annotations1/'
 # ProcessedPath = '/home/hjm/sign/image/'
-ProcessedPath = '/home/hjm/traffic_valid/t_test/'
+ProcessedPath = input('Processedpath: ')
+# ProcessedPath = '/home/hjm/traffic_valid/t_test/'
 
 imagelist = os.listdir(ImgPath)
 imagelist = sorted(imagelist)

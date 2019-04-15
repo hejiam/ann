@@ -1,9 +1,11 @@
 import os
 
 # file_path = "/home/hjm/sign/test/"
-file_path = "/home/hjm/lenet_train/images/"
+file_path = input("file_path: ")
+# file_path = "/home/hjm/lenet_train/images/"
 # anno_path = "/home/hjm/sign/testxml/"
-anno_path = "/home/hjm/lenet_train/test/"
+anno_path = input("anno_path: ")
+# anno_path = "/home/hjm/lenet_train/test/"
 
 list = os.listdir(file_path)
 list = sorted(list)
