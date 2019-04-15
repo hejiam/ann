@@ -214,7 +214,7 @@ def autolabel(rects):
         # plt.text(rect.get_x()+rect.get_width()/2.-0.05, 1.02*height, "%s" % float(height))
 
 
-
+plt.figure(figsize=(15, 10))
 plt.xlabel('speed_limit')
 plt.ylabel('accuracy')
 plt.title("valid_accuracy")
@@ -222,4 +222,5 @@ rect = plt.bar(range(len(num_list)),num_list,color='rgb',tick_label=name_list)
 # plt.bar(range(len(num_list)),num_list,color='rgb')
 autolabel(rect)
 # plt.show()
-plt.savefig("accuracy.jpg",dpi=100)
+
+plt.savefig("accuracy.jpg")
