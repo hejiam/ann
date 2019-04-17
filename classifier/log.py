@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 # source_path = input("your address:")
-source_path = '/home/hjm/darknet/name.log'
+source_path = '/home/hjm/darknet/new_valid.log'
 
 with open(source_path,'r') as r:
     lines = r.readlines()
@@ -200,9 +200,12 @@ name_list=['false','05','15','20','30','40','50','60','65','70','80','100','110'
 num_list = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 for i in range(0,28):
     if total[i]!=0:
-        num_list[i] = correct[i]/total[i]
-        # num_list[i] = round(num,2)
-        print(num_list[i])
+        # num_list[i] = correct[i]/total[i]
+        num = correct[i]/total[i]
+        num_list[i] = round(num,2)
+        # print(num_list[i])
+    else:
+        name_list[i] = 0
 
 print(num_list)
 
@@ -210,7 +213,7 @@ print(num_list)
 def autolabel(rects):
     for rect in rects:
         height = rect.get_height()
-        plt.text(rect.get_x()+rect.get_width()/2.-0.05,1.02*height, "%.2f" % float(height),ha='center', va='bottom')
+        plt.text(rect.get_x()+rect.get_width()/2.-0.05,1.02*height, "%s" % float(height),ha='center', va='bottom')
         # plt.text(rect.get_x()+rect.get_width()/2.-0.05, 1.02*height, "%s" % float(height))
 
 
@@ -218,7 +221,7 @@ plt.figure(figsize=(15, 10))
 plt.xlabel('speed_limit')
 plt.ylabel('accuracy')
 plt.title("valid_accuracy")
-rect = plt.bar(range(len(num_list)),num_list,color='rgb',tick_label=name_list)
+rect = plt.bar(range(len(num_list)),num_list,color='green',tick_label=name_list)
 # plt.bar(range(len(num_list)),num_list,color='rgb')
 autolabel(rect)
 # plt.show()
