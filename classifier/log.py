@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 # source_path = input("your address:")
-source_path = '/home/hjm/darknet/new_valid.log'
+source_path = '/home/hjm/darknet/test.log'
 
 with open(source_path,'r') as r:
     lines = r.readlines()
@@ -220,10 +220,10 @@ def autolabel(rects):
 plt.figure(figsize=(15, 10))
 plt.xlabel('speed_limit')
 plt.ylabel('accuracy')
-plt.title("valid_accuracy")
+plt.title("test_data_accuracy")
 rect = plt.bar(range(len(num_list)),num_list,color='green',tick_label=name_list)
 # plt.bar(range(len(num_list)),num_list,color='rgb')
 autolabel(rect)
 # plt.show()
 
-plt.savefig("accuracy.jpg")
+plt.savefig("test_data.jpg")

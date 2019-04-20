@@ -1,8 +1,8 @@
 import os
 
 # source_path = '/home/hjm/darknet/data/lenet/test/'
-source_path = '/home/hjm/darknet/data/lenet/new_valid/'
-dst_path = '/home/hjm/darknet/data/lenet/version/'
+source_path = '/home/hjm/traffic_valid/t_test/traffic_sign/'
+dst_path = '/home/hjm/traffic_valid/t_test/version/'
 
 list1 = os.listdir(source_path)
 list2 = sorted(os.listdir(dst_path))

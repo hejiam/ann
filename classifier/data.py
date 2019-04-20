@@ -1,6 +1,6 @@
 import os
 
-source_path = '/home/hjm/traffic_valid/valid/t_sign/'
+source_path = '/home/hjm/images/2_v1/o2/'
 # source_path = '/home/hjm/darknet/data/lenet/'
 
 list = os.listdir(source_path)
