@@ -1,7 +1,7 @@
 # 将image_lenet中相同类别的数据放入现有数据集中
 import os
 
-source_path = '/home/hjm/images/2/o2/'
+source_path = '/home/hjm/images/3/train/'
 file1_path = '/home/hjm/lenet_train/image_new/'
 file2_path = '/home/hjm/lenet_train/image_old/'
 file3_path = '/home/hjm/lenet_train/image_lenet/'

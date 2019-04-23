@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 # source_path = input("your address:")
-source_path = '/home/hjm/darknet/test.log'
+source_path = '/home/hjm/darknet/modify3.log'
 
 with open(source_path,'r') as r:
     lines = r.readlines()
@@ -21,29 +21,43 @@ data_correct = ''
 data_error = ''
 data = ''
 
-if lines[1].split(',')[0].split(':')[2] == ' 1.000000':
+one = lines[1].split(',')[0].split(':')[2]
+if one == ' 1.000000':
     line = lines[0].split(',')[0].split('/')[-1]+'\n'
     # print(line)
-    data_correct +=line
+    data_correct += line
     data += line
     # w1.write(line)
-elif lines[1].split(',')[0].split(':')[2] == ' 0.000000':
+    for i in range(3, m, 2):
+        # print (i)
+        l1 = lines[i - 2].split(',')[0].split(':')[2]
+        l2 = lines[i].split(',')[0].split(':')[2]
+        line = lines[i - 1].split(',')[0].split('/')[-1] + '\n'
+        # print(line)
+        if l1 > l2:
+            data_error += line
+            data += line
+        else:
+            data_correct += line
+            data += line
+elif one == ' 0.000000':
     line = lines[0].split(',')[0].split('/')[-1]+'\n'
-    data_error +=line
+    data_error += line
     data += line
+    for i in range(3, m, 2):
+        # print (i)
+        l1 = lines[i - 2].split(',')[0].split(':')[2]
+        l2 = lines[i].split(',')[0].split(':')[2]
+        line = lines[i - 1].split(',')[0].split('/')[-1] + '\n'
+        # print(line)
+        if l1 >= l2:
+            data_error += line
+            data += line
+        else:
+            data_correct += line
+            data += line
 
-for i in range(3,m,2):
-    # print (i)
-    l1 = lines[i-2].split(',')[0].split(':')[2]
-    l2 = lines[i].split(',')[0].split(':')[2]
-    line = lines[i-1].split(',')[0].split('/')[-1]+'\n'
-    # print(line)
-    if l1 > l2:
-        data_error += line
-        data += line
-    else:
-        data_correct += line
-        data +=line
+
 
 # data_correct = sorted(data_correct)
 
@@ -58,8 +72,8 @@ with open('/home/hjm/darknet/error.txt','w') as w2:
 w2.close()
 
 # accuracy = []
-correct = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-total = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+correct = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+total = [0,0,0,0,0,0,0,0,0,0,0,0,0]
 with open('/home/hjm/darknet/correct.txt','r') as r:
     lines = r.readlines()
     # print(lines)
@@ -81,46 +95,46 @@ with open('/home/hjm/darknet/correct.txt','r') as r:
             correct[6] += 1
         elif line.find('traffic_sign_60') > 0:
             correct[7] += 1
-        elif line.find('traffic_sign_65') > 0:
-            correct[8] += 1
+        # elif line.find('traffic_sign_65') > 0:
+        #     correct[8] += 1
         elif line.find('traffic_sign_70') > 0:
-            correct[9] += 1
+            correct[8] += 1
         elif line.find('traffic_sign_80') > 0:
-            correct[10] += 1
+            correct[9] += 1
         elif line.find('traffic_sign_100') > 0:
-            correct[11] += 1
+            correct[10] += 1
         elif line.find('traffic_sign_110') > 0:
-            correct[12] += 1
+            correct[11] += 1
         elif line.find('traffic_sign_120') > 0:
-            correct[13] += 1
-        elif line.find('traffic_sign_lowest_50') > 0:
-            correct[14] += 1
-        elif line.find('traffic_sign_lowest_60') > 0:
-            correct[15] += 1
-        elif line.find('traffic_sign_lowest_70') > 0:
-            correct[16] += 1
-        elif line.find('traffic_sign_lowest_80') > 0:
-            correct[17] += 1
-        elif line.find('traffic_sign_lowest_90') > 0:
-            correct[18] += 1
-        elif line.find('traffic_sign_lowest_100') > 0:
-            correct[19] += 1
-        elif line.find('traffic_sign_lowest_110') > 0:
-            correct[20] += 1
-        elif line.find('traffic_sign_remove_20') > 0:
-            correct[21] += 1
-        elif line.find('traffic_sign_remove_30') > 0:
-            correct[22] += 1
-        elif line.find('traffic_sign_remove_40') > 0:
-            correct[23] += 1
-        elif line.find('traffic_sign_remove_60') > 0:
-            correct[24] += 1
-        elif line.find('traffic_sign_remove_65') > 0:
-            correct[25] += 1
-        elif line.find('traffic_sign_remove_80') > 0:
-            correct[26] += 1
-        elif line.find('traffic_sign_remove_120') > 0:
-            correct[27] += 1
+            correct[12] += 1
+        # elif line.find('traffic_sign_lowest_50') > 0:
+        #     correct[14] += 1
+        # elif line.find('traffic_sign_lowest_60') > 0:
+        #     correct[15] += 1
+        # elif line.find('traffic_sign_lowest_70') > 0:
+        #     correct[16] += 1
+        # elif line.find('traffic_sign_lowest_80') > 0:
+        #     correct[17] += 1
+        # elif line.find('traffic_sign_lowest_90') > 0:
+        #     correct[18] += 1
+        # elif line.find('traffic_sign_lowest_100') > 0:
+        #     correct[19] += 1
+        # elif line.find('traffic_sign_lowest_110') > 0:
+        #     correct[20] += 1
+        # elif line.find('traffic_sign_remove_20') > 0:
+        #     correct[21] += 1
+        # elif line.find('traffic_sign_remove_30') > 0:
+        #     correct[22] += 1
+        # elif line.find('traffic_sign_remove_40') > 0:
+        #     correct[23] += 1
+        # elif line.find('traffic_sign_remove_60') > 0:
+        #     correct[24] += 1
+        # elif line.find('traffic_sign_remove_65') > 0:
+        #     correct[25] += 1
+        # elif line.find('traffic_sign_remove_80') > 0:
+        #     correct[26] += 1
+        # elif line.find('traffic_sign_remove_120') > 0:
+        #     correct[27] += 1
 
 print(correct)
 
@@ -147,46 +161,46 @@ for d in data:
         total[6] += 1
     elif d.find('traffic_sign_60') > 0:
         total[7] += 1
-    elif d.find('traffic_sign_65') > 0:
-        total[8] += 1
+    # elif d.find('traffic_sign_65') > 0:
+    #     total[8] += 1
     elif d.find('traffic_sign_70') > 0:
-        total[9] += 1
+        total[8] += 1
     elif d.find('traffic_sign_80') > 0:
-        total[10] += 1
+        total[9] += 1
     elif d.find('traffic_sign_100') > 0:
-        total[11] += 1
+        total[10] += 1
     elif d.find('traffic_sign_110') > 0:
-        total[12] += 1
+        total[11] += 1
     elif d.find('traffic_sign_120') > 0:
-        total[13] += 1
-    elif d.find('traffic_sign_lowest_50') > 0:
-        total[14] += 1
-    elif d.find('traffic_sign_lowest_60') > 0:
-        total[15] += 1
-    elif d.find('traffic_sign_lowest_70') > 0:
-        total[16] += 1
-    elif d.find('traffic_sign_lowest_80') > 0:
-        total[17] += 1
-    elif d.find('traffic_sign_lowest_90') > 0:
-        total[18] += 1
-    elif d.find('traffic_sign_lowest_100') > 0:
-        total[19] += 1
-    elif d.find('traffic_sign_lowest_110') > 0:
-        total[20] += 1
-    elif d.find('traffic_sign_remove_20') > 0:
-        total[21] += 1
-    elif d.find('traffic_sign_remove_30') > 0:
-        total[22] += 1
-    elif d.find('traffic_sign_remove_40') > 0:
-        total[23] += 1
-    elif d.find('traffic_sign_remove_60') > 0:
-        total[24] += 1
-    elif d.find('traffic_sign_remove_65') > 0:
-        total[25] += 1
-    elif d.find('traffic_sign_remove_80') > 0:
-        total[26] += 1
-    elif d.find('traffic_sign_remove_120') > 0:
-        total[27] += 1
+        total[12] += 1
+    # elif d.find('traffic_sign_lowest_50') > 0:
+    #     total[14] += 1
+    # elif d.find('traffic_sign_lowest_60') > 0:
+    #     total[15] += 1
+    # elif d.find('traffic_sign_lowest_70') > 0:
+    #     total[16] += 1
+    # elif d.find('traffic_sign_lowest_80') > 0:
+    #     total[17] += 1
+    # elif d.find('traffic_sign_lowest_90') > 0:
+    #     total[18] += 1
+    # elif d.find('traffic_sign_lowest_100') > 0:
+    #     total[19] += 1
+    # elif d.find('traffic_sign_lowest_110') > 0:
+    #     total[20] += 1
+    # elif d.find('traffic_sign_remove_20') > 0:
+    #     total[21] += 1
+    # elif d.find('traffic_sign_remove_30') > 0:
+    #     total[22] += 1
+    # elif d.find('traffic_sign_remove_40') > 0:
+    #     total[23] += 1
+    # elif d.find('traffic_sign_remove_60') > 0:
+    #     total[24] += 1
+    # elif d.find('traffic_sign_remove_65') > 0:
+    #     total[25] += 1
+    # elif d.find('traffic_sign_remove_80') > 0:
+    #     total[26] += 1
+    # elif d.find('traffic_sign_remove_120') > 0:
+    #     total[27] += 1
 
 print(total)
 # name_list = ['false_positive','traffic_sign_05','traffic_sign_15','traffic_sign_20','traffic_sign_30','traffic_sign_40',
@@ -195,14 +209,13 @@ print(total)
 #              'traffic_sign_lowest_70','traffic_sign_lowest_80','traffic_sign_lowest_90','traffic_sign_lowest_100',
 #              'traffic_sign_lowest_110','traffic_sign_remove_20','traffic_sign_remove_30','traffic_sign_remove_40',
 #              'traffic_sign_remove_60','traffic_sign_remove_65','traffic_sign_remove_80','traffic_sign_remove_120']
-name_list=['false','05','15','20','30','40','50','60','65','70','80','100','110','120','l_50','l_60','l_70','l_80',
-           'l_90','l_100','l_110','r_20','r_30','r_40','r_60','r_65','r_80','r_120']
-num_list = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-for i in range(0,28):
+name_list=['false','05','15','20','30','40','50','60','70','80','100','110','120']
+num_list = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+for i in range(0,13):
     if total[i]!=0:
         # num_list[i] = correct[i]/total[i]
         num = correct[i]/total[i]
-        num_list[i] = round(num,2)
+        num_list[i] = round(num, 2)
         # print(num_list[i])
     else:
         name_list[i] = 0
@@ -211,19 +224,29 @@ print(num_list)
 
 # 定义柱状图中每个柱代表的值 并且让其居中显示 ha表示横向对齐方式 va表示纵向对齐方式
 def autolabel(rects):
+    i=0
     for rect in rects:
+        # print(rect)
         height = rect.get_height()
-        plt.text(rect.get_x()+rect.get_width()/2.-0.05,1.02*height, "%s" % float(height),ha='center', va='bottom')
+        plt.text(rect.get_x()+rect.get_width()/2.-0.05,1.02*height, "%s" % float(height),ha='center', va='top')
+        plt.text(rect.get_x() + rect.get_width() / 2. - 0.05, 1.02 * height, "%s" % float(total[i]), ha='center',
+                 va='bottom')
+        plt.text(rect.get_x() + rect.get_width() / 2. - 0.05, 1.04 * height, "%s" % float(correct[i]), ha='center',
+                 va='bottom')
+        i += 1
+        # plt.text(rect.get_x()+rect.get_width()/2.-0.05,1.02*height, "%s" % float(num_list),ha='center', va='bottom')
         # plt.text(rect.get_x()+rect.get_width()/2.-0.05, 1.02*height, "%s" % float(height))
 
 
 plt.figure(figsize=(15, 10))
 plt.xlabel('speed_limit')
 plt.ylabel('accuracy')
-plt.title("test_data_accuracy")
+plt.title("modify3_accuracy")
 rect = plt.bar(range(len(num_list)),num_list,color='green',tick_label=name_list)
 # plt.bar(range(len(num_list)),num_list,color='rgb')
 autolabel(rect)
 # plt.show()
+# for i in range(13):
+#     plt.text(rect.get_x() + rect.get_width() / 2. - 0.05, 1.02 * height, "%s" % float(num_list[i]), ha='center', va='bottom')
 
-plt.savefig("test_data.jpg")
+plt.savefig("modify3.jpg")

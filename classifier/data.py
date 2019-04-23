@@ -1,6 +1,6 @@
 import os
 
-source_path = '/home/hjm/images/2_v1/o2/'
+source_path = '/home/hjm/images/3/train/'
 # source_path = '/home/hjm/darknet/data/lenet/'
 
 list = os.listdir(source_path)

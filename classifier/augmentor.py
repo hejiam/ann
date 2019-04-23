@@ -7,7 +7,7 @@
 # p.sample(30)
 
 
-
+import os
 import Augmentor
 # path_to_data = "/home/hjm/lenet_train/image_old/false-positive/"
 
@@ -28,7 +28,7 @@ import Augmentor
 # path_to_data = "/home/hjm/images/2/o2/traffic_sign_110/"
 # path_to_data = "/home/hjm/images/2/o2/traffic_sign_65/"
 # path_to_data = "/home/hjm/images/2/o2/traffic_sign_15/"
-path_to_data = "/home/hjm/images/2/o2/traffic_sign_05/"
+# path_to_data = "/home/hjm/images/2/o2/traffic_sign_05/"
 
 
 # path_to_data = "/home/hjm/images/2/o2/traffic_sign_120/"
@@ -41,12 +41,18 @@ path_to_data = "/home/hjm/images/2/o2/traffic_sign_05/"
 # path_to_data = '/home/hjm/images/2/o2/false_positive/'
 # path_to_data = "/home/hjm/images"
 
+path_to_data = '/home/hjm/images/3/train/traffic_sign_20/'
+# src_path = '/home/hjm/images/3/train/'
+# list = os.listdir(src_path)
+
+# for l in list:
+# path_to_data = os.path.join(src_path,l) + '/'
 # create a pipeline
 p = Augmentor.Pipeline(path_to_data)
 
 # 对图像进行旋转 可设置最大旋转角度和最小旋转角度
 # p.rotate(probability=0.5,max_right_rotation=20,max_left_rotation=25)
-p.rotate_without_crop(probability=0.5,max_left_rotation=20,max_right_rotation=20)
+# p.rotate_without_crop(probability=0.5,max_left_rotation=20,max_right_rotation=20)
 
 # 转换图像像素值强度从0-255变化
 # p.greyscale(probability=0.5)
@@ -58,8 +64,23 @@ p.random_brightness(probability=0.5,min_factor=0.5,max_factor=1.5)
 p.random_contrast(probability=0.5,min_factor=0.5,max_factor=1.5)
 # 对图像的大小进行等比例变换 scale_factor必须大于1
 p.scale(probability=0.8, scale_factor=2)
-
-p.sample(1990)
+# if l.find('sign_05') >0:
+#     p.sample(2000)
+# elif l.find('sign_15')>0:
+#     p.sample(2000)
+# elif l.find('sign_30') >0:
+#     p.sample(1740)
+# elif l.find('sign_50') >0:
+#     p.sample(1800)
+# elif l.find('sign_70') >0:
+#     p.sample(1500)
+# elif l.find('sign_100') >0:
+#     p.sample(1400)
+# elif l.find('sign_110') >0:
+#     p.sample(1850)
+# elif l.find('sign_120') >0:
+#     p.sample(1400)
+p.sample(1550)
 
 
 # 对图像放大后进行随机剪切
